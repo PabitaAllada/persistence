@@ -1,9 +1,13 @@
 package io.projects.persistence.mapping;
 
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -15,9 +19,35 @@ public class User {
 		private String id;
 		private String name;
 		
-		@OneToOne
-	private Address address;
+//		//home address
+//		@OneToOne
+//	private Address address;
 		
+		//office address
+//		@ManyToOne
+//		private Address address;
+		
+		 @OneToMany
+		 private List<Address> addresses;
+
+//		
+//	@ManyToMany
+//		private List<Address> addresses;
+
+		
+	public List<Address> getAddresses() {
+			
+	return addresses;
+		}
+
+		
+	public void setAddresses(List<Address> addresses) 
+	{
+			
+	this.addresses = addresses;
+
+		}
+
 		public User()
 		{
 			this.id= UUID.randomUUID().toString();
@@ -25,10 +55,7 @@ public class User {
 		public String getId() {
 			return id;
 		}
-		public Address getAddress() {
-			return address;
-		}
-	
+		
 		
 		public void setId(String id) {
 			this.id = id;
@@ -40,10 +67,8 @@ public class User {
 			this.name = name;
 		}
 		
-		public void setAddress(Address address) {
-			// TODO Auto-generated method stub
-			this.address=address;
-		}
+		
+		
 		
 	
 	
